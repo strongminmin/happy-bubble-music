@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="recommend">
+    <div class="recommend" v-loading:[loadingText]="loading">
         <scroll class="recommend-content">
             <div>
                 <div class="slider-wrapper">
@@ -16,7 +16,7 @@
                           :key="item.id"
                         >
                             <div class="icon">
-                                <img width="60" height="60" :src="item.pic">
+                                <img width="60" height="60" v-lazy="item.pic">
                             </div>
                             <div class="text">
                                 <h2 class="name">{{ item.username }}</h2>
@@ -43,7 +43,8 @@ export default {
   data() {
     return {
       sliders: [],
-      albums: []
+      albums: [],
+      loadingText: 'loading...'
     }
   },
   computed: {
@@ -61,7 +62,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .recommend {
-    position: fixed;
+    // position: fixed;
     width: 100%;
     top: 88px;
     bottom: 0;
